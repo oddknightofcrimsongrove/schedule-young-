@@ -4,20 +4,36 @@ const saveBtn = $('.saveBtn');
 const present = $('#present');
 const Past = $('#past');
 const future = $('#future');
-const hour09 = $('#hour-09');
-
-saveBtn.on('click', function(){
-  const ToDo = hour09.children()
-})
+const hour = dayjs().hour();
+console.log(hour);
 
 
+for(let i=9; i<18; i++){
+  $('#hour-'+ i).children('.saveBtn').on('click', function(){
+    const toDo = $('#hour-'+ i).children('.description').val();
+    console.log(toDo);
+    localStorage.setItem("hour-"+ i, toDo);
+  })
+}
 
-let userInfo = localStorage.getItem("current-day")
+for(let i = 9; i < 18; i++) {
+const toDo = localStorage.getItem("hour-" + i) || '';
+$('#hour-'+ i).children('.description').val(toDo);
+
+if (i < hour) {
+  $('#hour-' + i).children('.description').addClass('past');
+} else if (i === hour) {
+  $('#hour' + i).children('.description').addClass('present');
+} else {
+  $('#hour' + i).children('.description').addClass('future');
+}
+}
+//let userInfo = localStorage.getItem("current-day")
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$(function renderMessage() {
+//$(function renderMessage() {
   // TODO: Add a listener for click events on the save button. This code should
-saveBtn.on("click", save);
+//saveBtn.on("click", save);
 
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
@@ -38,4 +54,4 @@ saveBtn.on("click", save);
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
-});
+
