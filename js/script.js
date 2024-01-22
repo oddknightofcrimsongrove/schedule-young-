@@ -7,7 +7,7 @@ const future = $('#future');
 const hour = dayjs().hour();
 console.log(hour);
 const today = dayjs();
-$('#currentDay').text(today.format('MMM D, YYYY'));
+$('#currentDay').text(today.format('MMMM DD'));
 
 for(let i=9; i<18; i++){
   $('#hour-'+ i).children('.saveBtn').on('click', function(){
